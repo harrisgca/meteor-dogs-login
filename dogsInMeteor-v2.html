@@ -1,0 +1,85 @@
+<head>
+  <title>dogsInMeteor</title>
+</head>
+
+<body class="container">
+  <section>
+    The current template is {{current}}<br>
+    Current Dog is {{dog}}
+  </section>
+  <h1 class="jumbotron text-center">Dogs App!</h1>
+
+  <div class="center-block">
+    {{#if index}}
+      {{> dogIndex}}
+    {{/if}}
+
+    {{#if new}}
+      {{> addDog}}
+    {{/if}}
+
+    {{#if edit}}
+      {{> editDog}}
+    {{/if}}
+  </div>
+</body>
+
+<template name="dogIndex">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Breed</th>
+        <th>Age</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each dogs}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{age}}</td>
+        <td>{{breed}}</td>
+        <td>
+          <button name="{{_id}}" class="edit btn btn-warning">Edit</button>
+        </td>
+        <td>
+          <button name="{{_id}}" class="delete btn btn-danger">Delete</button>
+        </td>
+        <td>{{_id}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <button id="add-new">Add New Dog</button>
+</template>
+
+<template name="addDog">
+  <form class="form-group">
+    Name:
+    <input class="form-control" type="text" name="dogname"/><br>
+    Age:
+    <input class="form-control" type="text" name="age"/><br>
+    Breed:
+    <input class="form-control" type="text" name="breed"/>
+    <button class="btn btn-success add-new">Add New Dog</button>  -
+    <button class="back btn btn-danger">Back To Home</button>
+  </form>
+</template>
+
+<template name="editDog">
+  <form class="form-group">
+    Name:
+    <input class="form-control" type="text" name="name" value="{{currentDog.name}}"/><br>
+    Age:
+    <input class="form-control" type="text" name="age" value="{{currentDog.age}}"/><br>
+    Breed:
+    <input class="form-control" type="text" name="breed" value="{{currentDog.breed}}"/>
+    <button class="btn btn-success edit">Edit Dog</button>  -
+  </form>
+  <div id="name">
+    <button class="back btn btn-danger">Back To Home</button>
+  </div>
+</template>
