@@ -5,10 +5,17 @@
 <body class="container">
   <section>
     The current template is {{current}}<br>
-    Current Dog is {{dog}}
+    The current user is {{currentUser.emails[0]}}
   </section>
   <h1 class="jumbotron text-center">Dogs App!</h1>
 
+  {{>loginButtons}}
+  <p>
+    Current user is {{currentUser}}
+  </p>
+  <p>
+    User info from app: {{userDetails}}
+  </p>
   <div class="center-block">
     {{#if index}}
       {{> dogIndex}}
@@ -41,19 +48,23 @@
         <td>{{name}}</td>
         <td>{{age}}</td>
         <td>{{breed}}</td>
-        <td>
-          <button name="{{_id}}" class="edit btn btn-warning">Edit</button>
-        </td>
-        <td>
-          <button name="{{_id}}" class="delete btn btn-danger">Delete</button>
-        </td>
-        <td>{{_id}}</td>
+        {{#if currentUser}}
+          <td>
+            <button name="{{_id}}" class="edit btn btn-warning">Edit</button>
+          </td>
+          <td>
+            <button name="{{_id}}" class="delete btn btn-danger">Delete</button>
+          </td>
+          <td>{{_id}}</td>
+        {{/if}}
       </tr>
       {{/each}}
     </tbody>
   </table>
 
-  <button id="add-new">Add New Dog</button>
+  {{#if currentUser}}
+    <button id="add-new">Add New Dog</button>
+  {{/if}}
 </template>
 
 <template name="addDog">

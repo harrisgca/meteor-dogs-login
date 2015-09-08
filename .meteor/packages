@@ -9,3 +9,5 @@ autopublish
 insecure
 coffeescript
 twbs:bootstrap
+accounts-ui
+accounts-password
